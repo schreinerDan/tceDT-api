@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @RestController
-// @RequestMapping("users")
+@RequestMapping("/users")
 
 public class UserController {
     private final UserServices userServices;
@@ -33,30 +33,11 @@ public class UserController {
         User user = userServices.save(dto.parseObject());
         return new ResponseEntity<>(UserResponseDTO.parseDTO(user), HttpStatus.CREATED);
     }
-    @GetMapping(path = "/find")
+    @GetMapping
     public List<User> findAll() {
         return userServices.findAll();
         // return new UserDTO()
     }
-    @GetMapping(path = "/users")
-    public String seek() {
-        return "seek";//userServices.findAll();
-        // return new UserDTO()
-    }
-    // @GetMapping
-    // public List<User> findAll(){
-    //     return users.findAll();
-    // }
-    // @PostMapping
-    // public void save(User user){
-    //     users.save(user); 
-    // }
-    // public void edit(User user){
-    //     if(user.getId()>0)
-    //         users.save(user); 
-    // }
-    // public void del(User user){
-    //     users.delete(user); 
-    // }
-
+    
+    
 }
