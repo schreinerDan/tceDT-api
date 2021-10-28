@@ -1,6 +1,8 @@
 package com.schreiner.tcedtapi.controller;
 
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import com.schreiner.tcedtapi.dto.UserDTO;
 import com.schreiner.tcedtapi.dto.UserResponseDTO;
@@ -13,10 +15,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+// import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @RestController
 @RequestMapping("/users")
@@ -29,15 +32,21 @@ public class UserController {
     }
     
     @PostMapping
-    public ResponseEntity<UserResponseDTO> save(@RequestBody UserDTO dto) {
-        User user = userServices.save(dto.parseObject());
+    public ResponseEntity<UserResponseDTO> salvar(@RequestBody UserDTO dto) {
+        User user = userServices.salvar(dto.parseObject());
         return new ResponseEntity<>(UserResponseDTO.parseDTO(user), HttpStatus.CREATED);
     }
     @GetMapping
-    public List<User> findAll() {
-        return userServices.findAll();
-        // return new UserDTO()
+    public List<UserDTO> findAll() {
+        
+        return userServices.findAll().stream().map(User-> new UserDTO(User)).collect(Collectors.toList());
+        
+        
     }
+    // public User get(Integer id) {
+        
+    //     return  userRepository.getById(id);
+    // }
     
     
 }

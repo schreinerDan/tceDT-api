@@ -2,6 +2,7 @@ package com.schreiner.tcedtapi.services;
 
 import java.util.List;
 
+import com.schreiner.tcedtapi.dto.UserDTO;
 import com.schreiner.tcedtapi.model.User;
 import com.schreiner.tcedtapi.repository.UserRepository;
 
@@ -17,12 +18,16 @@ public class UserServices {
         this.userRepository = userRepository;
     }
 
-    public User save(User user) {
+    public User salvar(User user) {
         return userRepository.save(user);
     }
-    public List<User> findAll() {
-        return userRepository.findAll();
-    }
-
     
+    public List<User> findAll() {
+        
+        return  userRepository.findAll();
+    }
+    public User get(Integer id) {
+        
+        return  userRepository.getById(id);
+    }
 }

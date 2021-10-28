@@ -8,39 +8,36 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import io.swagger.annotations.ApiModelProperty;
+// import io.swagger.annotations.ApiModelProperty;
+// import lombok.NoArgsConstructor;
 
 @Entity
+// @NoArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    // @ApiModelProperty(value = "Código da pessoa")
-    private Long id;
-  
-    @Column(nullable = false)
+    private Integer id;
+    @Column(nullable = true)
     private String username;
-  
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String password;
-  
-    @Column(nullable = false)
+    @Column(nullable = true)
     private Boolean is_enabled;
-
-    @Column(nullable = false)
+    @Column(nullable = true)
     private Date register_date;
-  
-    @Column(nullable = false)
-    @ApiModelProperty(value = "Nome da pessoa")
+    @Column(nullable = true)
     private String name;
-  
+    @Column(nullable = true)
     private String surname;
-    
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String email;
 
-   
+    public User(){
+
+    }
     public User(String username,String password, Boolean is_enabled, Date register_date,
-            String name,String surname,String email){
+    
+    String name,String surname,String email){
             this.username = username;
             this.password = password;
             this.is_enabled = is_enabled;
@@ -52,11 +49,11 @@ public class User {
 
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
