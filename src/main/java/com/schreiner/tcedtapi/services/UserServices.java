@@ -1,6 +1,7 @@
 package com.schreiner.tcedtapi.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.schreiner.tcedtapi.dto.UserDTO;
 import com.schreiner.tcedtapi.model.User;
@@ -30,4 +31,14 @@ public class UserServices {
         
         return  userRepository.getById(id);
     }
+    public Optional<User> findById(Integer id){
+        return userRepository.findById(id);
+        
+    }
+    public void deleteById(Integer id){
+         userRepository.deleteById(id);
+    }
+    public void update(Integer id){
+        userRepository.deleteById(id);
+   }
 }

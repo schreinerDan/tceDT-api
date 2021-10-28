@@ -9,7 +9,7 @@ import com.schreiner.tcedtapi.model.User;
 
 
 public class UserDTO {
-   
+   private Integer id;
     private String username;
   
     private String password;
@@ -29,6 +29,14 @@ public class UserDTO {
         return new User(username, password, is_enabled, register_date, name, surname, email);
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public UserDTO(){
 
     }
@@ -43,8 +51,9 @@ public class UserDTO {
         this.email = email;
     }
     public UserDTO(User user){
+        this.setId(user.getId());
         this.username = user.getUsername();
-        this.password = user.getPassword();
+        // this.password = user.getPassword();
         this.is_enabled = user.getIs_enabled();
         this.register_date = user.getRegister_date();
         this.name = user.getName();

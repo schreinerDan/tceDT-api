@@ -13,10 +13,14 @@ import com.schreiner.tcedtapi.services.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 // import io.swagger.v3.oas.annotations.parameters.RequestBody;
@@ -43,10 +47,37 @@ public class UserController {
         
         
     }
-    // public User get(Integer id) {
+    @GetMapping("/{id}")
+    public UserDTO get(@PathVariable Integer id)
+    {
+        UserDTO userDTO = new UserDTO(userServices.get(id));
+        return userDTO;
         
-    //     return  userRepository.getById(id);
-    // }
+    }
+    @DeleteMapping(path ={"/{id}"})
+    public ResponseEntity <?> delete(@PathVariable Integer id) {
+        return userServices.findById(id)
+                .map(record -> {
+                    userServices.deleteById(id);
+                    return ResponseEntity.ok().build();
+                }).orElse(ResponseEntity.notFound().build());
+    }
+
+    @PutMapping(value="/{id}")
+    public ResponseEntity update(@PathVariable("id") Integer id,
+                                      @RequestBody UserDTO dto) {
+
+    return userServices.findById(id)
+            .map(record -> {
+                record.setName(dto.getName());
+                record.setEmail(dto.getEmail());
+                record.setUsername(dto.getUsername());
+                
+                User updated = userServices.salvar(record);
+                return ResponseEntity.ok().body(new UserDTO(updated));
+            }).orElse(ResponseEntity.notFound().build());
+    }
+
     
     
 }
