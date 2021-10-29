@@ -1,18 +1,17 @@
 package com.schreiner.tcedtapi.controller;
 
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import com.schreiner.tcedtapi.dto.UserDTO;
 import com.schreiner.tcedtapi.dto.UserResponseDTO;
 import com.schreiner.tcedtapi.model.User;
-import com.schreiner.tcedtapi.repository.UserRepository;
 import com.schreiner.tcedtapi.services.UserServices;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,10 +19,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-// import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @RestController
 @RequestMapping("/users")
@@ -66,16 +63,15 @@ public class UserController {
     @PutMapping(value="/{id}")
     public ResponseEntity update(@PathVariable("id") Integer id,
                                       @RequestBody UserDTO dto) {
-
-    return userServices.findById(id)
-            .map(record -> {
-                record.setName(dto.getName());
-                record.setEmail(dto.getEmail());
-                record.setUsername(dto.getUsername());
-                
-                User updated = userServices.salvar(record);
-                return ResponseEntity.ok().body(new UserDTO(updated));
-            }).orElse(ResponseEntity.notFound().build());
+        return userServices.findById(id)
+                .map(record -> {
+                    record.setName(dto.getName());
+                    record.setEmail(dto.getEmail());
+                    record.setUsername(dto.getUsername());
+                    
+                    User updated = userServices.salvar(record);
+                    return ResponseEntity.ok().body(new UserDTO(updated));
+                }).orElse(ResponseEntity.notFound().build());
     }
 
     
