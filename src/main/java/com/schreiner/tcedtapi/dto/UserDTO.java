@@ -4,10 +4,6 @@ import java.sql.Date;
 
 import com.schreiner.tcedtapi.model.User;
 
-
-
-
-
 public class UserDTO {
    private Integer id;
     private String username;
@@ -25,7 +21,7 @@ public class UserDTO {
     private String email;
 
     public User parseObject(){
-        // return new User(username, password, is_enabled, register_date, name, surname, email);
+      
         return new User(username, password, is_enabled, register_date, name, surname, email);
     }
 
@@ -53,26 +49,12 @@ public class UserDTO {
     public UserDTO(User user){
         this.setId(user.getId());
         this.username = user.getUsername();
-        // this.password = user.getPassword();
         this.is_enabled = user.getIs_enabled();
         this.register_date = user.getRegister_date();
         this.name = user.getName();
         this.surname = user.getSurname();
         this.email = user.getEmail();
     }
-    /*
-    public  UserDTO convertDTO(User user){
-        this.username = user.getUsername();
-        this.password = user.getPassword();
-        this.is_enabled = user.getIs_enabled();
-        this.register_date = user.getRegister_date();
-        this.name = user.getName();
-        this.surname = user.getSurname();
-        this.email = user.getEmail();
-        
-        return this;
-
-    }*/
 
 
     public String getUsername() {
