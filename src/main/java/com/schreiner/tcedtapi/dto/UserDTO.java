@@ -49,6 +49,8 @@ public class UserDTO {
     public UserDTO(User user){
         this.setId(user.getId());
         this.username = user.getUsername();
+        this.password = user.getPassword();
+     
         this.is_enabled = user.getIs_enabled();
         this.register_date = user.getRegister_date();
         this.name = user.getName();
