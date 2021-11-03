@@ -29,13 +29,14 @@ public class User {
     private String surname;
     @Column(nullable = true)
     private String email;
+    @Column(nullable = true)
+    private String phone;
 
     public User(){
 
     }
     public User(String username,String password, Boolean is_enabled, Date register_date,
-    
-    String name,String surname,String email){
+    String name,String surname,String email,String phone){
             this.username = username;
             this.password = password;
             this.is_enabled = is_enabled;
@@ -43,6 +44,7 @@ public class User {
             this.name = name;
             this.surname = surname;
             this.email = email;
+            this.phone = phone;
 
 
     }
@@ -105,6 +107,13 @@ public class User {
 
     public String getEmail() {
         return email;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+    public String getPhone() {
+        return phone;
     }
 
     public void setEmail(String email) {

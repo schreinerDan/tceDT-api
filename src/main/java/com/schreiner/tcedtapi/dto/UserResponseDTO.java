@@ -21,8 +21,10 @@ public class UserResponseDTO {
     
     private String email;
     
+    private String phone;
+
     public UserResponseDTO(Integer   id2, String username2, String password2, Boolean is_enabled2, Date register_date2,
-            String name2, String surname2, String email2) {
+            String name2, String surname2, String email2, String phone2) {
                 this.id = id2;
                 this.username = username2;
                 this.password = password2;
@@ -31,8 +33,17 @@ public class UserResponseDTO {
                 this.name = name2;
                 this.surname = surname2;
                 this.email = email2;
+                this.phone = phone2;
     }
     
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -99,7 +110,7 @@ public class UserResponseDTO {
 
     public static UserResponseDTO parseDTO(User user) {
         
-        return new UserResponseDTO(user.getId(),user.getUsername(),user.getPassword(),user.getIs_enabled(), user.getRegister_date(),user.getName(),user.getSurname(),user.getEmail() );
+        return new UserResponseDTO(user.getId(),user.getUsername(),user.getPassword(),user.getIs_enabled(), user.getRegister_date(),user.getName(),user.getSurname(),user.getEmail(),user.getPhone() );
     }
     
 

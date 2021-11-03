@@ -20,9 +20,10 @@ public class UserDTO {
     
     private String email;
 
+    private String phone;
     public User parseObject(){
       
-        return new User(username, password, is_enabled, register_date, name, surname, email);
+        return new User(username, password, is_enabled, register_date, name, surname, email, phone);
     }
 
     public Integer getId() {
@@ -37,7 +38,7 @@ public class UserDTO {
 
     }
     public UserDTO(String username,String password, Boolean is_enabled, Date register_date,
-        String name,String surname,String email){
+        String name,String surname,String email, String phone){
         this.username = username;
         this.password = password;
         this.is_enabled = is_enabled;
@@ -45,6 +46,7 @@ public class UserDTO {
         this.name = name;
         this.surname = surname;
         this.email = email;
+        this.phone = phone;
     }
     public UserDTO(User user){
         this.setId(user.getId());
@@ -56,6 +58,7 @@ public class UserDTO {
         this.name = user.getName();
         this.surname = user.getSurname();
         this.email = user.getEmail();
+        this.phone = user.getPhone();
     }
 
 
@@ -113,6 +116,13 @@ public class UserDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
     
 
