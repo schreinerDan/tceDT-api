@@ -3,7 +3,7 @@ package com.schreiner.tcedtapi.services;
 import java.util.List;
 import java.util.Optional;
 
-import com.schreiner.tcedtapi.dto.UserDTO;
+//import com.schreiner.tcedtapi.dto.UserDTO;
 import com.schreiner.tcedtapi.model.User;
 import com.schreiner.tcedtapi.repository.UserRepository;
 
@@ -38,7 +38,5 @@ public class UserServices {
     public void deleteById(Integer id){
          userRepository.deleteById(id);
     }
-    public void update(Integer id){
-        userRepository.deleteById(id);
-   }
+   
 }

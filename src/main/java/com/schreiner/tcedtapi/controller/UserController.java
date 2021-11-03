@@ -60,13 +60,15 @@ public class UserController {
     }
 
     @PutMapping(value="/{id}")
-    public ResponseEntity update(@PathVariable("id") Integer id,
+    public ResponseEntity <?> update(@PathVariable("id") Integer id,
                                       @RequestBody UserDTO dto) {
         return userServices.findById(id)
                 .map(record -> {
                     record.setName(dto.getName());
+                    record.setSurname(dto.getSurname());
                     record.setEmail(dto.getEmail());
                     record.setUsername(dto.getUsername());
+                    record.setIs_enabled(dto.getIs_enabled());
                     
                     User updated = userServices.salvar(record);
                     return ResponseEntity.ok().body(new UserDTO(updated));
